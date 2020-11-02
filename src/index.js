@@ -1,17 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+class ParentCom extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    let header = <div>这是header的内容区域</div>;
+    let main = <div>这是main的内容区域</div>;
+    let footer = <div>这是footer的内容区域</div>
+    return (
+      <div>
+        {this.props.children}
+        <ChildCom>
+          <h2>{header}</h2>
+          <h2>{main}</h2>
+          <h2>{footer}</h2>
+        </ChildCom>
+      </div>
+    )
+  }
+}
+class ChildCom extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    let header = '这是header';
+    return (
+      <div>
+        {this.props.children}
+      </div>
+    )
+  }
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ParentCom>
+    <h1>这是一级标题</h1>
+  </ParentCom>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
